@@ -3,7 +3,7 @@ ENV HOME=/usr/app
 USER root
 RUN mkdir -p $HOME
 WORKDIR $HOME
-COPY .m2/. $HOME/.m2/
+VOLUME .m2:$HOME/.m2
 ADD pom.xml $HOME
 #RUN mvn verify --fail-never
 ADD . $HOME
