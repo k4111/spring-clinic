@@ -4,10 +4,10 @@ USER root
 RUN mkdir -p $HOME
 WORKDIR $HOME
 ADD .m2 $HOME/.m2
-#ADD pom.xml $HOME
-#RUN mvn verify --fail-never
+ADD pom.xml $HOME
+RUN mvn verify --fail-never
 ADD . $HOME
-RUN mvn package
+RUN mvn clean compile
 
 FROM openjdk:17-jdk-alpine
 COPY --from=builder /usr/app/target/spring-petclinic-3.2.0-SNAPSHOT.jar /app/runner.jar
